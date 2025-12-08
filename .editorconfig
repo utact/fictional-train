@@ -1,0 +1,10 @@
+root = true
+
+# 전체 공통 (2칸)
+[*]
+indent_style = space
+indent_size = 2
+
+# 백엔드 자바 (4칸)
+[backend/**.java]
+indent_size = 4
