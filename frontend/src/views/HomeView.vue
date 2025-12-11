@@ -70,6 +70,8 @@ const handleLogin = async () => {
 // 로그아웃 로직
 const handleLogout = () => {
   store.logout();
+  loginObj.value.username = '';
+  loginObj.value.password = '';
 };
 </script>
 
