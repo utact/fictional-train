@@ -1,9 +1,8 @@
 package com.w.backend.domain.auth.controller;
 
+import com.w.backend.domain.auth.dto.TokenDto;
 import com.w.backend.domain.auth.dto.UserLoginRequest;
 import com.w.backend.domain.auth.service.AuthService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,12 +19,10 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping
-    public ResponseEntity<Void> login(@RequestBody UserLoginRequest request,
-                                      HttpServletRequest httpRequest,
-                                      HttpServletResponse httpResponse) {
-        authService.login(request, httpRequest, httpResponse);
-        return ResponseEntity.ok().build();
+    @PostMapping("/login")
+    public ResponseEntity<TokenDto> login(@RequestBody UserLoginRequest request) {
+        TokenDto tokenDto = authService.login(request);
+        return ResponseEntity.ok(tokenDto);
     }
 
 }
