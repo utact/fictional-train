@@ -60,6 +60,11 @@ public class AuthService {
         return new TokenDto(accessToken, refreshToken);
     }
 
+    @Transactional
+    public void logout(String username) {
+        refreshTokenMapper.deleteByKey(username);
+    }
+
     private Authentication authenticateUser(UserLoginRequest request) {
         UsernamePasswordAuthenticationToken token =
             new UsernamePasswordAuthenticationToken(request.username(), request.password());

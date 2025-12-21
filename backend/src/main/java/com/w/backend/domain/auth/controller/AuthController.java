@@ -41,4 +41,13 @@ public class AuthController {
         return ResponseEntity.ok(newTokenDto);
     }
 
+    @Operation(summary = "로그아웃", description = "서버에서 Refresh Token을 삭제합니다. Access Token이 필요합니다.")
+    @ApiResponse(responseCode = "200", description = "로그아웃 성공")
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout() {
+        String username = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getName();
+        authService.logout(username);
+        return ResponseEntity.ok().build();
+    }
+
 }
