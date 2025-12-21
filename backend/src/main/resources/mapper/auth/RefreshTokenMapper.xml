@@ -16,7 +16,7 @@
     </update>
 
     <select id="findByKey" resultType="RefreshToken">
-        SELECT rt_key as key, rt_value as value
+        SELECT rt_key as "key", rt_value as "value"
         FROM refresh_token
         WHERE rt_key = #{key}
     </select>
