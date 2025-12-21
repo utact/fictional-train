@@ -26,11 +26,6 @@ public class UserController {
 
     @GetMapping("/me")
     public ResponseEntity<UserResponse> getMyInfo(@AuthenticationPrincipal UserDetails userDetails) {
-        // 방어코드
-        if (userDetails == null) {
-            return ResponseEntity.status(401).build();
-        }
-        // 정상흐름
         UserResponse response = userService.getUserByUsername(userDetails.getUsername());
         return ResponseEntity.ok(response);
     }

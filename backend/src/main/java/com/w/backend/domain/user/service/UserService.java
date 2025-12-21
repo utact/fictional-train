@@ -4,7 +4,8 @@ import com.w.backend.domain.user.dto.UserJoinRequest;
 import com.w.backend.domain.user.dto.UserResponse;
 import com.w.backend.domain.user.entity.User;
 import com.w.backend.domain.user.mapper.UserMapper;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import com.w.backend.global.error.CustomException;
+import com.w.backend.global.error.ErrorCode;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,11 +31,7 @@ public class UserService {
     @Transactional(readOnly = true)
     public UserResponse getUserByUsername(String username) {
         User user = userMapper.findByUsername(username)
-            .orElseThrow(() -> {
-                System.out.println(">>>> [DEBUG] 예외 발생 위치: UserService");
-                System.out.println(">>>> [DEBUG] 유저 확인 불가: " + username);
-                return new UsernameNotFoundException("유저 확인 불가: " + username);
-            });
+            .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
         return UserResponse.from(user);
     }
 

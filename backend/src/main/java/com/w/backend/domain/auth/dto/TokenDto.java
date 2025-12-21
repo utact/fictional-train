@@ -1,4 +1,4 @@
 package com.w.backend.domain.auth.dto;
 
-public record TokenDto(String accessToken) {
+public record TokenDto(String accessToken, String refreshToken) {
 }
