@@ -7,17 +7,15 @@ public class User {
     private String password;
     private String role;
 
-    protected User() {
-    }
-
-    public User(String username, String password, String role) {
+    public User(Long id, String username, String password, String role) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
     public static User create(String username, String password) {
-        return new User(username, password, "USER");
+        return new User(null, username, password, "USER");
     }
 
     public Long getId() {

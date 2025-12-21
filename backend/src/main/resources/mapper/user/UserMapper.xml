@@ -4,12 +4,21 @@
 
 <mapper namespace="com.w.backend.domain.user.mapper.UserMapper">
 
+    <resultMap id="userResultMap" type="com.w.backend.domain.user.entity.User">
+        <constructor>
+            <idArg column="id" javaType="java.lang.Long"/>
+            <arg column="username" javaType="java.lang.String"/>
+            <arg column="password" javaType="java.lang.String"/>
+            <arg column="role" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO users (username, password, role)
         VALUES (#{username}, #{password}, #{role})
     </insert>
 
-    <select id="findByUsername" resultType="User">
+    <select id="findByUsername" resultMap="userResultMap">
         SELECT id, username, password, role
         FROM users
         WHERE username = #{username}
