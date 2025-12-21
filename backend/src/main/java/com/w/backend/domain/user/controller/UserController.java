@@ -6,6 +6,7 @@ import com.w.backend.domain.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +26,7 @@ public class UserController {
     @Operation(summary = "회원가입", description = "새로운 사용자를 등록합니다.")
     @ApiResponse(responseCode = "200", description = "회원가입 성공")
     @PostMapping
-    public ResponseEntity<Void> join(@RequestBody UserJoinRequest request) {
+    public ResponseEntity<Void> join(@RequestBody @Valid UserJoinRequest request) {
         userService.join(request);
         return ResponseEntity.ok().build();
     }

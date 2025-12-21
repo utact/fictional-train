@@ -6,6 +6,7 @@ import com.w.backend.domain.auth.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,7 +28,7 @@ public class AuthController {
     @ApiResponse(responseCode = "200", description = "로그인 성공 (토큰 발급)")
     @ApiResponse(responseCode = "401", description = "자격 증명 실패")
     @PostMapping("/login")
-    public ResponseEntity<TokenDto> login(@RequestBody UserLoginRequest request) {
+    public ResponseEntity<TokenDto> login(@RequestBody @Valid UserLoginRequest request) {
         TokenDto tokenDto = authService.login(request);
         return ResponseEntity.ok(tokenDto);
     }

@@ -3,6 +3,7 @@ package com.w.backend.domain.user.entity;
 import com.w.backend.global.error.CustomException;
 import com.w.backend.global.error.ErrorCode;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import java.util.Objects;
 
 public class User {
 
@@ -13,8 +14,8 @@ public class User {
 
     public User(Long id, String username, String password, String role) {
         this.id = id;
-        this.username = username;
-        this.password = password;
+        this.username = Objects.requireNonNull(username, "사용자 ID는 필수입니다.");
+        this.password = Objects.requireNonNull(password, "비밀번호는 필수입니다.");
         this.role = role;
     }
 
