@@ -23,9 +23,10 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final RefreshTokenMapper refreshTokenMapper;
 
-    public AuthService(TokenProvider tokenProvider,
-                       AuthenticationManager authenticationManager,
-                       RefreshTokenMapper refreshTokenMapper) {
+    public AuthService(
+            TokenProvider tokenProvider,
+            AuthenticationManager authenticationManager,
+            RefreshTokenMapper refreshTokenMapper) {
         this.tokenProvider = tokenProvider;
         this.authenticationManager = authenticationManager;
         this.refreshTokenMapper = refreshTokenMapper;
