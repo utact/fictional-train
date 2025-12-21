@@ -1,6 +1,6 @@
 package com.w.backend.domain.auth.dto;
 
-public record UserLoginRequst(
+public record UserLoginRequest(
     String username,
     String password
 ) {
