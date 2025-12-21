@@ -1,5 +1,9 @@
 package com.w.backend.domain.user.entity;
 
+import com.w.backend.global.error.CustomException;
+import com.w.backend.global.error.ErrorCode;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 public class User {
 
     private Long id;
@@ -32,6 +36,13 @@ public class User {
 
     public String getRole() {
         return role;
+    }
+
+    public void changePassword(String newPassword, PasswordEncoder passwordEncoder) {
+        if (passwordEncoder.matches(newPassword, this.password)) {
+            throw new CustomException(ErrorCode.SAME_PASSWORD);
+        }
+        this.password = passwordEncoder.encode(newPassword);
     }
 
 }

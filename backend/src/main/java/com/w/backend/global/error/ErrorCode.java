@@ -15,7 +15,8 @@ public enum ErrorCode {
     TOKEN_USER_MISMATCH(HttpStatus.UNAUTHORIZED, "A004", "토큰의 유저 정보가 일치하지 않습니다."),
 
     // User
-    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "U001", "사용자를 찾을 수 없습니다.");
+    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "U001", "사용자를 찾을 수 없습니다."),
+    SAME_PASSWORD(HttpStatus.BAD_REQUEST, "U002", "이전 비밀번호와 동일합니다.");
 
     private final HttpStatus status;
     private final String code;
